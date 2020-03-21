@@ -15,14 +15,14 @@ const Login = (props) => {
 
   //console.log(creds);
 
-  const userlogin = e => {
+  const userLogin = e => {
     e.preventDefault();
 
     axios
       .post(`http://localhost:5000/api/login`, creds)
       .then(res => {
         localStorage.setItem("token", res.data.payload);
-        //this.props.history.push('/route');
+        props.history.push('/bubbles');
       })
       .catch(err => {
         console.log(err);
@@ -33,7 +33,7 @@ const Login = (props) => {
   return (
     <>
       <h1>Welcome to the Bubble App!</h1>
-      <form>
+      <form onSubmit={userLogin}>
         <input 
           type='text'
           name='username'
